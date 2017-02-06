@@ -68,8 +68,14 @@ public class ArrayIterator<T> implements Iterator<T> {
 	/**
 	 * Remove the current element from array.
 	 * 
+	 * @throws IllegalStateException
+	 *             if called more than once.
 	 */
 	public void remove() {
-		array[cursor - 1] = null;
+		if (array[cursor - 1] != null) {
+			array[cursor - 1] = null;
+		} else {
+			throw new IllegalStateException();
+		}
 	}
 }
